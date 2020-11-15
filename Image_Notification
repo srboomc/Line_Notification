@@ -1,0 +1,22 @@
+import numpy as np
+import requests, urllib.parse
+import io
+from PIL import Image
+
+token = "your token"
+url = 'https://notify-api.line.me/api/notify'
+HEADERS = {'Authorization': 'Bearer ' + token}
+
+msg = "สวัสดีครับ"
+
+img = Image.open('new.png')
+img.load()
+myimg = np.array(img)
+
+f = io.BytesIO()
+Image.fromarray(myimg).save(f, 'png')
+data = f.getvalue()
+
+response = requests.post(url,headers=HEADERS,params={"message": msg}
+                                ,files={"imageFile": data})
+print(response)
