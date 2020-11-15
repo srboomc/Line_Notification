@@ -1,0 +1,9 @@
+import requests, urllib.parse
+
+token = "your token"
+url = 'https://notify-api.line.me/api/notify'
+HEADERS = {'Authorization': 'Bearer ' + token}
+
+msg = "สวัสดีครับ"
+response = requests.post(url,headers=HEADERS,params={"message": msg})
+print(response)
